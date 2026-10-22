@@ -150,7 +150,7 @@ class TerminalSession:
         """
         # send command "echo __PEXPECT_FLUSH_9f78a3c1__" with the same as expected token, so that the current terminal to this point is consumed
         logger.info("Flushing the terminal")
-        self.send_command(command=self.FLUSH_TOKEN , token=self.FLUSH_TOKEN)
+        self.send_command(command=self.FLUSH_TOKEN , token=self.FLUSH_TOKEN, timeout=5)
         # Do another expect to consume the flush token
         try:
             self.child.expect(self.FLUSH_TOKEN, timeout=5)
