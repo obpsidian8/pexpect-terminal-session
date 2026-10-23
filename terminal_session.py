@@ -72,10 +72,10 @@ class TerminalSession:
         logger.info("Getting current terminal output")
 
         try:
-            self.child.expect(self.FLUSH_TOKEN, timeout=3)
-            logger.info("Get output flush token received successfully.")
+            self.child.expect(self.PROMPT_TOKEN, timeout=3)
+            logger.info("Get current output: prompt token received successfully.")
         except pexpect.TIMEOUT:
-            logger.warning("Get output timed out while waiting for flush token.")
+            logger.warning("Get current output: timed out while waiting for prompt token.")
 
         current_terminal_output = self.child.before
         logger.info(f"\n[START(get_current_output)]============================\n{current_terminal_output}\n[END(get_current_output)]============================\n")
