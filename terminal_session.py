@@ -70,7 +70,9 @@ class TerminalSession:
         :rtype: str
         """
         logger.info("Getting current terminal output")
-        return str(self.child.before)
+        current_terminal_output = self.child.before
+        logger.info(f"\n[START(get_current_output)]============================\n{current_terminal_output}\n[END(get_current_output)]============================\n")
+        return str(current_terminal_output)
 
     def send_command(self, command: str,token: str="",timeout: int=10, command_type: CommandType=CommandType.NORMAL) -> dict:
         """
