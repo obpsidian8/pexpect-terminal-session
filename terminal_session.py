@@ -70,6 +70,13 @@ class TerminalSession:
         :rtype: str
         """
         logger.info("Getting current terminal output")
+
+        try:
+            self.child.expect(self.FLUSH_TOKEN, timeout=3)
+            logger.info("Get output flush token received successfully.")
+        except pexpect.TIMEOUT:
+            logger.warning("Get output timed out while waiting for flush token.")
+
         current_terminal_output = self.child.before
         logger.info(f"\n[START(get_current_output)]============================\n{current_terminal_output}\n[END(get_current_output)]============================\n")
         return str(current_terminal_output)
